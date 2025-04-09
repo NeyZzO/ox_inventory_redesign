@@ -24,6 +24,13 @@ const initialState: State = {
     maxWeight: 0,
     items: [],
   },
+  clothesInventory: {
+    id: '',
+    type: '',
+    slots: 0,
+    maxWeight: 0,
+    items: [],
+  },
   additionalMetadata: new Array(),
   itemAmount: 0,
   shiftPressed: false,
