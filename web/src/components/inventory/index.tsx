@@ -14,6 +14,7 @@ import InventoryContext from './InventoryContext';
 import { closeContextMenu } from '../../store/contextMenu';
 import Fade from '../utils/transitions/Fade';
 import HotInventory from './HotInventory';
+import MiddleInventory from "./MiddleInventory"
 
 const Inventory: React.FC = () => {
   const [inventoryVisible, setInventoryVisible] = useState(false);
@@ -30,6 +31,7 @@ const Inventory: React.FC = () => {
   useNuiEvent<{
     leftInventory?: InventoryProps;
     rightInventory?: InventoryProps;
+    middleInventory?: InventoryProps;
   }>('setupInventory', (data) => {
     dispatch(setupInventory(data));
     !inventoryVisible && setInventoryVisible(true);
@@ -49,14 +51,15 @@ const Inventory: React.FC = () => {
           <div className='verticalline'></div>
 
           <div className='playerinventory'>
-          <LeftInventory />
-          <HotInventory />
-
+            <LeftInventory />
+            <HotInventory />
           </div>
-
+          <div className="middleinventory">
+            <MiddleInventory />
+          </div>
           <div className='secondaryinventory'>
-          <RightInventory />
-          <InventoryControl />
+            <RightInventory />
+            <InventoryControl />
           </div>
           <Tooltip />
           <InventoryContext />

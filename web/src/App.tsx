@@ -29,7 +29,7 @@ debugData([
             name: 'cola',
             weight: 3000,
             metadata: {
-              description: `name: Svetozar Miletic  \n Gender: Male`,
+              description: `name: Kaka kaka  \n Gender: Male`,
               durability: 75,
               ammo: 3,
               mustard: '60%',
@@ -46,7 +46,7 @@ debugData([
             count: 1,
             metadata: {durability: 75,label: 'Flaregun',description: 'Generic item description' },
           },
-          { slot: 5, name: 'water', weight: 100, count: 1 },
+          { slot: 5, name: 'water', weight: 100, count: 1, metadata: {label: "KAKA"} },
           {
             slot: 6,
             name: 'backwoods',
@@ -83,6 +83,13 @@ debugData([
           },
         ],
       },
+      middleInventory: {
+        id: 'test2',
+        type: "clothing",
+        items: [
+          { slot: 1, name: 'water', weight: 100, count: 1 },
+        ] 
+      }
     },
   },
 ]);

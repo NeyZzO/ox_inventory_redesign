@@ -11,7 +11,7 @@ $secondaryColorDark: rgba(214, 214, 214, 0.8);
 $gridCols: 5;
 $gridRows: 3;
 $secondarygridRows: 4;
-$gridSize: 10.2vh;
+$gridSize: 9.2vh;
 $gridGap: 0.4vw;
 $containerSize: calc(#{$gridRows} * #{$gridSize + 0.22vh} + #{$gridRows} * #{$gridGap});
 $secondarycontainerSize: calc(#{$secondarygridRows} * #{$gridSize + 0.22vh} + #{$secondarygridRows} * #{$gridGap});
