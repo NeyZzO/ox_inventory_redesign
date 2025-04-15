@@ -48,7 +48,7 @@ const Inventory: React.FC = () => {
       <Fade in={inventoryVisible}>
         <div className="inventory-wrapper">
 
-          <div className='verticalline'></div>
+          {/* <div className='verticalline'></div> */}
 
           <div className='playerinventory'>
             <LeftInventory />

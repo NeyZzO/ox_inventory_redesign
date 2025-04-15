@@ -292,6 +292,13 @@ button:active {
   height: calc(#{5.5}  * #{$gridSize + 0.22vh} + #{5.5} * #{$gridGap});
 }
 
+.middleinventory {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(#{5.5}  * #{$gridSize + 5.22vh} + #{5.5} * #{$gridGap});
+}
+
 .secondaryinventory{
   display: flex;
   flex-direction: column;
@@ -337,6 +344,21 @@ button:active {
   display: grid;
   height: $containerSize;
   grid-template-columns: repeat($gridCols, $gridSize);
+  grid-auto-rows: $gridSize + 0.22vh;
+  gap: $gridGap;
+  overflow-y: scroll;
+}
+
+.clothing-grid-container {
+  display: flex;
+  justify-content: space-between;
+  width: 30dvw;
+}
+
+.clothing-left, .clothing-right {
+  display: grid;
+  height: 100%;
+  grid-template-columns: repeat(1, $gridSize);
   grid-auto-rows: $gridSize + 0.22vh;
   gap: $gridGap;
   overflow-y: scroll;

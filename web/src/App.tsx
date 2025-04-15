@@ -85,9 +85,10 @@ debugData([
       },
       middleInventory: {
         id: 'test2',
+        slots: 16,
         type: "clothing",
         items: [
-          { slot: 1, name: 'water', weight: 100, count: 1 },
+          { slot: 5, name: 'water', weight: 100, count: 1, metadata: {label: "KAKA"} },
         ] 
       }
     },

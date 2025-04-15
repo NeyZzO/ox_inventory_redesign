@@ -1,6 +1,6 @@
 import InventoryGrid from './InventoryGrid';
 import { useAppSelector } from '../../store';
-import { selectMiddleInventory } from '../../store/inventory';
+import { selectLeftInventory, selectMiddleInventory } from '../../store/inventory';
 import ClothesInventoryGrid from './ClothesInventoryGrid';
 
 const MiddleInventory: React.FC = () => {

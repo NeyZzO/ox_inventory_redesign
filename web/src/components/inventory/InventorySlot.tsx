@@ -21,10 +21,11 @@ interface SlotProps {
   inventoryType: Inventory['type'];
   inventoryGroups: Inventory['groups'];
   item: Slot;
+  icon?: React.ReactElement<any, any>;
 }
 
 const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> = (
-  { item, inventoryId, inventoryType, inventoryGroups },
+  { item, inventoryId, inventoryType, inventoryGroups, icon },
   ref
 ) => {
   const manager = useDragDropManager();
@@ -102,7 +103,7 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
 
   const handleContext = (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
-    if (inventoryType !== 'player' || !isSlotWithItem(item)) return;
+    if ((inventoryType !== 'player' && inventoryType !== 'clothing') || !isSlotWithItem(item)) return;
 
     dispatch(openContextMenu({ item, coords: { x: event.clientX, y: event.clientY } }));
   };
@@ -136,6 +137,20 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
         border: isOver ? '1px dashed rgba(255,255,255,0.4)' : '',
       }}
     >
+      {(!isSlotWithItem(item) && inventoryType === 'clothing') && (
+        <div 
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            fontSize: "1.5rem",
+            color: "rgba(255,255,255, 0.4)"
+          }}
+        >
+          {icon}
+        </div>
+      )}
       {isSlotWithItem(item) && (
         <div
           className="item-slot-wrapper"
