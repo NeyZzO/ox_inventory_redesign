@@ -15,6 +15,7 @@ import { GiKevlarVest, GiBilledCap, GiWinterGloves, GiEarrings, GiDoorRingHandle
 import { IoWatch } from "react-icons/io5";
 import { MdBadge } from "react-icons/md";
 import { BsSunglasses } from "react-icons/bs";
+import { IconType } from 'react-icons';
 
 
 /*
@@ -24,17 +25,20 @@ import { BsSunglasses } from "react-icons/bs";
 
 */
 const icons: any = {
-  1: <GiBilledCap />,     9: <PiMaskHappyFill />,
-  2: <GiEarrings />,      10: <BsSunglasses />,
-  3: <GiPearlNecklace />, 11: <PiScissorsFill />,
-  4: <GiKevlarVest />,    12: <FaShirt />,
-  5: <MdBadge />,         13: <FaVest />,
-  6: <GiWinterGloves />,  14: <GiDoorRingHandle />,
-  7: <FaBagShopping />,   15: <IoWatch />,
-  8: <PiPantsFill />,     16: <PiSneakerFill />
+  1: GiBilledCap,     9: PiMaskHappyFill,
+  2: GiEarrings,      10: BsSunglasses,
+  3: GiPearlNecklace, 11: PiScissorsFill,
+  4: GiKevlarVest,    12: FaShirt,
+  5: MdBadge,         13: FaVest,
+  6: GiWinterGloves,  14: GiDoorRingHandle,
+  7: FaBagShopping,   15: IoWatch,
+  8: PiPantsFill,     16: PiSneakerFill
 } 
 
-const getIconFromSlotNbr = (nbr: number) => (icons[nbr] || <FaShirt />);
+const getIconFromSlotNbr = (nbr: number): React.ReactElement<any, any> => {
+  const IconComponent = icons[nbr] || FaShirt;
+  return <IconComponent />;
+};
 
 const InventoryGrid: React.FC<{ inventory: Inventory }> = ({ inventory }) => {
   const weight = useMemo(

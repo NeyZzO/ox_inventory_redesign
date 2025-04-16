@@ -222,4 +222,93 @@ return {
 		label = 'Scrap Metal',
 		weight = 80,
 	},
+
+
+	--- Vêtements
+
+	['cap'] = { -- 1
+		label = "Casquette",
+		weight = 1
+	},
+
+	['mask'] = { -- 9
+		label = "Casquette",
+		weight = 1
+	},
+
+	['earrings'] = { -- 2
+		label = "Boucles d'oreille",
+		weight = 1
+	},
+
+	['glasses'] = { -- 10
+		label = "Lunettes",
+		weight = 1
+	},
+
+	['necklace'] = { -- 3
+		label = "Collier",
+		weight = 1
+	},
+
+	['haircut'] = { -- 11
+		label = "Coupe de cheveux",
+		weight = 1
+	},
+
+	['armor'] = { -- 4
+		label = "Gilet pare-balles",
+		weight = 1
+	},
+
+	['shirt'] = { -- 12
+		label = "T-Shirt",
+		weight = 1
+	},
+
+	['decals'] = { -- 5
+		label = "Decals/Logos",
+		weight = 1
+	},
+
+	['jacket'] = { -- 13
+		label = "Veste/Overlay",
+		weight = 1
+	},
+
+	['gloves'] = { -- 6
+		label = "Gants",
+		weight = 1
+	},
+
+	['bracelet'] = { -- 14
+		label = "Bracelet",
+		weight = 1
+	},
+
+	['bag'] = { -- 7
+		label = "Sac/Parachute",
+		weight = 1
+	},
+
+	['watch'] = { -- 15
+		label = "Montre",
+		weight = 1
+	},
+
+	['pants'] = { -- 8
+		label = "Pantalon",
+		weight = 1
+	},
+
+	['shoes'] = { -- 16
+		label = "Chaussures",
+		weight = 1
+	},
+
+	['outfit'] = {
+		label = "Tenue",
+		weight = 1
+	},
+
 }
