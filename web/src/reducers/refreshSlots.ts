@@ -78,6 +78,8 @@ export const refreshSlotsReducer: CaseReducer<State, PayloadAction<Payload>> = (
         ? 'leftInventory'
         : inventoryId === state.rightInventory.id
         ? 'rightInventory'
+        : inventoryId === state.middleInventory.id
+        ? 'middleInventory'
         : null;
 
     if (!inv) return;
