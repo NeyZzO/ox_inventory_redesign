@@ -11,6 +11,7 @@ export type State = {
   additionalMetadata: Array<{ metadata: string; value: string }>;
   history?: {
     leftInventory: Inventory;
+    middleInventory: Inventory;
     rightInventory: Inventory;
   };
 };

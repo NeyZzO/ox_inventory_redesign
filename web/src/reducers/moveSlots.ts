@@ -26,6 +26,8 @@ export const moveSlotsReducer: CaseReducer<
     durability: itemDurability(fromItem.metadata, curTime),
   };
 
+  console.log(state, action)
+
   if (fromType === InventoryType.SHOP || fromType === InventoryType.CRAFTING) return;
 
   sourceInventory.items[fromSlot.slot - 1] =

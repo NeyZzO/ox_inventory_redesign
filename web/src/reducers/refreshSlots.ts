@@ -23,7 +23,9 @@ export const refreshSlotsReducer: CaseReducer<State, PayloadAction<Payload>> = (
       .forEach((data) => {
         const targetInventory = data.inventory
           ? data.inventory !== InventoryType.PLAYER
-            ? state.rightInventory
+            ? data.inventory !== InventoryType.CLOTHING
+              ? state.rightInventory
+              : state.middleInventory
             : state.leftInventory
           : state.leftInventory;
 
@@ -85,6 +87,7 @@ export const refreshSlotsReducer: CaseReducer<State, PayloadAction<Payload>> = (
       type: 'setupInventory',
       payload: {
         leftInventory: inv === 'leftInventory' ? state[inv] : undefined,
+        middleInventory: inv === "middleInventory" ? state[inv] : undefined,
         rightInventory: inv === 'rightInventory' ? state[inv] : undefined,
       },
     });

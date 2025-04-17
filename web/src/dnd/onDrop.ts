@@ -6,11 +6,15 @@ import { moveSlots, stackSlots, swapSlots } from '../store/inventory';
 import { Items } from '../store/items';
 
 export const onDrop = (source: DragSource, target?: DropTarget) => {
+  console.log(source, target);
   const { inventory: state } = store.getState();
 
   const { sourceInventory, targetInventory } = getTargetInventory(state, source.inventory, target?.inventory);
 
+  console.log(sourceInventory);
+
   const sourceSlot = sourceInventory.items[source.item.slot - 1] as SlotWithItem;
+  console.log(sourceSlot)
 
   const sourceData = Items[sourceSlot.name];
 

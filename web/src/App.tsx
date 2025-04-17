@@ -88,7 +88,7 @@ debugData([
         slots: 16,
         type: "clothing",
         items: [
-          { slot: 5, name: 'water', weight: 100, count: 1, metadata: {label: "KAKA"} },
+          { slot: 1, name: 'shirt', weight: 100, count: 1, metadata: {label: "KAKA"} },
         ] 
       }
     },

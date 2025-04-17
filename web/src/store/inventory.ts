@@ -76,6 +76,7 @@ export const inventorySlice = createSlice({
 
       state.history = {
         leftInventory: current(state.leftInventory),
+        middleInventory: current(state.middleInventory),
         rightInventory: current(state.rightInventory),
       };
     });
@@ -83,8 +84,9 @@ export const inventorySlice = createSlice({
       state.isBusy = false;
     });
     builder.addMatcher(isRejected, (state) => {
-      if (state.history && state.history.leftInventory && state.history.rightInventory) {
+      if (state.history && state.history.leftInventory && state.history.rightInventory && state.history.middleInventory) {
         state.leftInventory = state.history.leftInventory;
+        state.middleInventory = state.history.middleInventory;
         state.rightInventory = state.history.rightInventory;
       }
       state.isBusy = false;
