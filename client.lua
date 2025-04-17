@@ -19,6 +19,25 @@ RegisterNetEvent('ox_inventory:clearWeapons', function()
     Weapon.ClearAll(currentWeapon)
 end)
 
+local pedSkin = { -- 
+    ["helmet_1"]    = -1,   ["helmet_2"]    = -1, -- 1  => Casquette
+    ["ears_1"]      = -1,   ["ears_2"]      = -1, -- 2  => Boucles d'oreilles
+    ["chain_1"]     = 8,    ["chain_2"]     = 0,  -- 3  => Collier
+    ["bproof_1"]    = 0,    ["bproof_2"]    = 0,  -- 4  => Gilet pare-balles
+    ['decals_1']    = 44,   ['decals_2']    = 1,  -- 5  => Decals
+    ["arms"]        = 0,                          -- 6  => Gants
+    ['bags_1']      = 63,   ['bags_2']      = 0,  -- 7  => Sac à dos
+    ["pants_1"]     = 0,    ["pants_2"]     = 0,  -- 8  => Pantalon
+    ["mask_1"]      = 90,   ["mask_2"]      = 0,  -- 9  => Masque
+    ['glasses_1']   = 0,    ['glasses_2']   = 0,  -- 10 => Lunettes
+    ['hair_1']      = 0,    ["hair_2"]      = 0,  -- 11 => Coupe de cheveux (je crois)
+    ["tshirt_1"]    = 0,    ["tshirt_2"]    = 0,  -- 12 => Tee shirt
+    ["torso_1"]     = 0,    ["torso_2"]     = 0,  -- 13 => Veste (upper)
+    ['bracelets_1'] = 0,    ["bracelets_2"] = 0,  -- 14 => Bracelet
+    ['watches_1']   = 0,    ["watches_2"]   = 0,  -- 15 => Montre
+    ["shoes_1"]     = 0,    ["shoes_2"]     = 0,  -- 16 => Chaussures
+}
+
 local StashTarget
 
 exports('setStashTarget', function(id, owner)
@@ -287,7 +306,7 @@ function client.openInventory(inv, data)
         action = 'setupInventory',
         data = {
             leftInventory = left,
-            middleInventory = GetMiddleInventory(),
+            middleInventory = client.GetMiddleInventory(),
             rightInventory = currentInventory
         }
     })
@@ -355,7 +374,7 @@ RegisterNetEvent('ox_inventory:forceOpenInventory', function(left, right)
         action = 'setupInventory',
         data = {
             leftInventory = left,
-            middleInventory = GetMiddleInventory(),
+            middleInventory = client.GetMiddleInventory(),
             rightInventory = currentInventory
         }
     })
@@ -1347,7 +1366,7 @@ RegisterNetEvent('ox_inventory:setPlayerInventory', function(currentDrops, inven
                 items = PlayerData.inventory,
                 maxWeight = shared.playerweight,
             },
-            middleInventory=GetMiddleInventory(),
+            middleInventory=client.GetMiddleInventory(),
             imagepath = client.imagepath
         }
     })
@@ -1605,7 +1624,7 @@ RegisterNetEvent('ox_inventory:viewInventory', function(left, right)
         action = 'setupInventory',
         data = {
             leftInventory = left,
-            middleInventory = GetMiddleInventory(),
+            middleInventory = client.GetMiddleInventory(),
             rightInventory = currentInventory
         }
     })
@@ -1800,6 +1819,7 @@ local swapActive = false
 
 ---Synchronise and validate all item movement between the NUI and server.
 RegisterNUICallback('swapItems', function(data, cb)
+    print(json.encode(data))
     if swapActive or not invOpen or invBusy or usingItem then return cb(false) end
 
     swapActive = true
@@ -2012,42 +2032,54 @@ function client.GetMiddleInventory()
     ]]
 
     local correspondances = {
-        [1] = {"helmet_1", "helmet_2"},
-        [2] = {"ears_1", "ears_2"},
-        [3] = {"chain_1", "chain_2"},
-        [4] = {"bproof_1", "bproof_2"},
-        [5] = {"decals_1", "decals_2"},
-        [6] = {"arms"},
-        [7] = {"bags_1", "bags_2"},
-        [8] = {"pants_1", "pants_2"},
-        [9] = {"mask_1", "mask_2"},
-        [10] = {"glasses_1", "glasses_2"},
-        [11] = {"hair_1", "hair_2"},
-        [12] = {"tshirt_1", "tshirt_2"},
-        [13] = {"torso_1", "torso_2"},
-        [14] = {"bracelets_1", "bracelets_2"},
-        [15] = {"watches_1", "watches_2"},
-        [16] = {"shoes_1", "shoes_2"},
+        [1] = {"cap", "helmet_1", "helmet_2"},
+        [2] = {"earrings", "ears_1", "ears_2"},
+        [3] = {"necklace", "chain_1", "chain_2"},
+        [4] = {"armor", "bproof_1", "bproof_2"},
+        [5] = {"decals", "decals_1", "decals_2"},
+        [6] = {"gloves", "arms"},
+        [7] = {"bag", "bags_1", "bags_2"},
+        [8] = {"pants", "pants_1", "pants_2"},
+        [9] = {"mask", "mask_1", "mask_2"},
+        [10] = {"glasses", "glasses_1", "glasses_2"},
+        [11] = {"haircut", "hair_1", "hair_2"},
+        [12] = {"shirt", "tshirt_1", "tshirt_2"},
+        [13] = {"vest", "torso_1", "torso_2"},
+        [14] = {"bracelet", "bracelets_1", "bracelets_2"},
+        [15] = {"watch", "watches_1", "watches_2"},
+        [16] = {"shoes", "shoes_1", "shoes_2"},
     }
-    local pedSkin = {
-        ["helmet_1"]    = -1,   ["helmet_2"]    = -1, -- 1  => Casquette
-        ["ears_1"]      = -1,   ["ears_2"]      = -1, -- 2  => Boucles d'oreilles
-        ["chain_1"]     = 8,    ["chain_2"]     = 0,  -- 3  => Collier
-        ["bproof_1"]    = GetPedPropIndex(PlayerPed, 9),    ["bproof_2"]    = GetPedPropTextureIndex(PlayerPed, 9),  -- 4  => Gilet pare-balles
-        ['decals_1']    = 44,   ['decals_2']    = 1,  -- 5  => Decals
-        ["arms"]        = GetPedPropIndex(PlayerPed, 5),                          -- 6  => Gants
-        ['bags_1']      = 63,   ['bags_2']      = 0,  -- 7  => Sac à dos
-        ["pants_1"]     = GetPedPropIndex(PlayerPed, 4),    ["pants_2"]     = GetPedPropTextureIndex(PlayerPed, 4),  -- 8  => Pantalon
-        ["mask_1"]      = 90,   ["mask_2"]      = 0,  -- 9  => Masque
-	    ['glasses_1']   = 0,    ['glasses_2']   = 0,  -- 10 => Lunettes
-        ['hair_1']      = GetPedPropIndex(PlayerPed, 2),    ["hair_2"]      = GetPedPropTextureIndex(PlayerPed, 2),  -- 11 => Coupe de cheveux (je crois)
-        ["tshirt_1"]    = GetPedPropIndex(PlayerPed, 3),    ["tshirt_2"]    = GetPedPropTextureIndex(PlayerPed, 3),  -- 12 => Tee shirt
-        ["torso_1"]     = 0,    ["torso_2"]     = 0,  -- 13 => Veste (upper)
-        ['bracelets_1'] = 0,    ["bracelets_2"] = 0,  -- 14 => Bracelet
-        ['watches_1']   = 0,    ["watches_2"]   = 0,  -- 15 => Montre
-        ["shoes_1"]     = GetPedPropIndex(PlayerPed, 6) ,   ["shoes_2"]     = GetPedPropTextureIndex(PlayerPed, 6),  -- 16 => Chaussures
-    }
+    
 
+    for i = 1, 16, 1 do 
 
+        if (correspondances[i][3]) then
+            table.insert(inv.items, {
+                slot = i,
+                name = correspondances[i][1],
+                count=1,
+                weight=1,
+                metadata = {
+                    description = ("['%s'] = %d, ['%s'] = %d"):format(correspondances[i][2], pedSkin[correspondances[i][2]], correspondances[i][3], pedSkin[correspondances[i][3]]),
+                },
+            })
+        else
+            table.insert(inv.items, {
+                slot = i,
+                name = correspondances[i][1],
+                count=1,
+                weight=1,
+                metadata = {
+                    description = ("['%s'] = %d"):format(correspondances[i][2], pedSkin[correspondances[i][2]]),
+                },
+            })
+        end
+    end
     return inv
 end
+
+
+RegisterNetEvent('esx:playerLoaded', function()
+
+    pedSkin = exports.skinchanger.GetSkin()
+end)
